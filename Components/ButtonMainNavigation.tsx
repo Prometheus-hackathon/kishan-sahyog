@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, Vibration } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Lexend_500Medium, useFonts } from "@expo-google-fonts/lexend";
 export default function BottonMainNavigation(){
@@ -13,7 +13,10 @@ export default function BottonMainNavigation(){
         justifyContent: "space-between"
       }}>
     
-        <View style={{
+        <TouchableOpacity onPress={()=>{
+             Vibration.vibrate(1)
+        }} activeOpacity={0.6}
+ style={{
           width: "30%",
           height: "100%",
           backgroundColor: "#E3FFED",
@@ -33,9 +36,12 @@ export default function BottonMainNavigation(){
           }}>
          MY CROP
           </Text>
-        </View>
+        </TouchableOpacity>
     
-        <View style={{
+        <TouchableOpacity onPress={()=>{
+             Vibration.vibrate(1)
+        }} activeOpacity={0.6}
+        style={{
           width: "30%",
           height: "100%",
           backgroundColor: "#E3FFED",
@@ -55,7 +61,7 @@ export default function BottonMainNavigation(){
           }}>
          CONTACT WITH BUYER
           </Text>
-        </View>
+          </TouchableOpacity>
     
     
     

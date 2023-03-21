@@ -1,5 +1,5 @@
 
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity,Vibration } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Lexend_500Medium, useFonts } from "@expo-google-fonts/lexend";
 import MicFill from "../assets/custom/mic_fill.svg";
@@ -8,6 +8,9 @@ import VegetableSVG from '../assets/custom/VegetableSVG.svg'
 import BuildingSVG from '../assets/custom/BuildingSVG.svg'
 import BookSVG from '../assets/custom/BookSVG.svg'
 
+function Vinration(){
+    Vibration.vibrate(1)
+}
 
 export default function FlowerNavigator() {
     let [fontsLoaded] = useFonts({
@@ -49,7 +52,7 @@ export default function FlowerNavigator() {
         }}>
   
         </View>
-        <View style={{
+        {/* <View style={{
           position: "absolute",
           zIndex: 10,
           height: '100%',
@@ -57,10 +60,14 @@ export default function FlowerNavigator() {
           flex: 1,
           justifyContent: "center",
           alignItems: "center"
-        }}>
+        }}> */}
           {/* center btn */}
-          <View style={{
+          <TouchableOpacity onPress={Vinration} activeOpacity={0.6} style={{
             backgroundColor: "#E3FFED",
+            position: "absolute",
+            top: '50%',
+            left: '50%',
+            transform: [{translateX: -verticalScale(35)}, {translateY: -verticalScale(35)}],
             borderColor:"#1A6144",
             marginLeft: scale(10),
             borderWidth: verticalScale(2),
@@ -73,9 +80,9 @@ export default function FlowerNavigator() {
           }}>
            
   <MicFill height={verticalScale(30)} width={verticalScale(30)} fill="#1A6144" />
-          </View>
+          </TouchableOpacity>
   
-        </View>
+        {/* </View> */}
   
         <View
           style={{
@@ -84,7 +91,7 @@ export default function FlowerNavigator() {
             gap: verticalScale(10),
           }}
         >
-          <View
+         <TouchableOpacity onPress={Vinration} activeOpacity={0.9}
             style={{
               width: "50%",
               backgroundColor: "white",
@@ -104,9 +111,9 @@ export default function FlowerNavigator() {
             }}>
             DISEASE DETECTION
             </Text>
-          </View>
+          </TouchableOpacity>
   
-          <View
+          <TouchableOpacity onPress={Vinration} activeOpacity={0.9}
             style={{
               width: "50%",
               backgroundColor: "white",
@@ -126,7 +133,7 @@ export default function FlowerNavigator() {
             }}>
             SCHEMES FOR YOU
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
   
         <View
@@ -136,7 +143,7 @@ export default function FlowerNavigator() {
             gap: verticalScale(10),
           }}
         >
-          <View
+          <TouchableOpacity onPress={Vinration} activeOpacity={0.9}
             style={{
               width: "50%",
               backgroundColor: "white",
@@ -157,9 +164,9 @@ export default function FlowerNavigator() {
             MY FARM
             </Text>
   
-          </View>
+          </TouchableOpacity>
   
-          <View
+          <TouchableOpacity onPress={Vinration} activeOpacity={0.9}
             style={{
               width: "50%",
               backgroundColor: "white",
@@ -180,7 +187,7 @@ export default function FlowerNavigator() {
            FARMING KNOWLEDGE
             </Text>
   
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
   
