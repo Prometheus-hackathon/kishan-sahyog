@@ -35,7 +35,7 @@ export default function WeatherWidget() {
         width: "90%",
         marginLeft: "auto",
         marginRight: "auto",
-        padding: verticalScale(20),
+        padding: verticalScale(15),
         borderRadius: verticalScale(10),
       }}
     >
@@ -43,7 +43,7 @@ export default function WeatherWidget() {
         style={{
           backgroundColor: "#E3FFED",
           width: "100%",
-          height: verticalScale(140),
+          height: verticalScale(100),
           borderRadius: verticalScale(10),
           borderWidth: verticalScale(2),
           borderColor: "#1A6144",
@@ -64,7 +64,7 @@ export default function WeatherWidget() {
             <Text
               style={{
                 fontFamily: "Lexend_500Medium",
-                fontSize: verticalScale(20),
+                fontSize: verticalScale(16),
                 color: "#1A6144",
               }}
             >
@@ -73,7 +73,7 @@ export default function WeatherWidget() {
             <Text
               style={{
                 fontFamily: "Lexend_500Medium",
-                fontSize: verticalScale(20),
+                fontSize: verticalScale(16),
                 color: "#1A6144",
               }}
             >
@@ -97,7 +97,7 @@ export default function WeatherWidget() {
               <Text
                 style={{
                   fontFamily: "Lexend_500Medium",
-                  fontSize: verticalScale(35),
+                  fontSize: verticalScale(28),
                   color: "#1A6144",
                 }}
               >
@@ -107,7 +107,7 @@ export default function WeatherWidget() {
               <Text
                 style={{
                   fontFamily: "Lexend_500Medium",
-                  fontSize: verticalScale(20),
+                  fontSize: verticalScale(15),
                   color: "#1A6144",
                   position: "absolute",
                   top: verticalScale(0),
@@ -118,7 +118,7 @@ export default function WeatherWidget() {
               </Text>
             </View>
             <View>
-              <SunLogo height={verticalScale(50)} width={verticalScale(50)} />
+              <SunLogo height={verticalScale(35)} width={verticalScale(35)} />
             </View>
           </View>
         </View>
@@ -133,7 +133,7 @@ export default function WeatherWidget() {
           <Text
             style={{
               fontFamily: "Lexend_500Medium",
-              fontSize: verticalScale(18),
+              fontSize: verticalScale(14),
               textAlign: "center",
               color: "red",
             }}
@@ -143,7 +143,7 @@ export default function WeatherWidget() {
           <Text
             style={{
               fontFamily: "Lexend_500Medium",
-              fontSize: verticalScale(18),
+              fontSize: verticalScale(14),
               textAlign: "center",
               color: "red",
             }}
@@ -167,7 +167,7 @@ export default function WeatherWidget() {
           marginTop: verticalScale(15),
           backgroundColor: "#E3FFED",
           width: "100%",
-          height: verticalScale(90),
+          height: verticalScale(80),
           borderRadius: verticalScale(10),
           borderWidth: verticalScale(2),
           borderColor: "#1A6144",
@@ -184,7 +184,7 @@ export default function WeatherWidget() {
           }}
         >
           <View>
-            <WindLogo height={verticalScale(30)} width={verticalScale(30)} />
+            <WindLogo height={verticalScale(25)} width={verticalScale(25)} />
           </View>
           <Text
             style={{
@@ -215,9 +215,8 @@ export default function WeatherWidget() {
         >
           <View>
             <HumidityLogo
-              height={verticalScale(30)}
-              width={verticalScale(30)}
-            />
+              height={verticalScale(25)} width={verticalScale(25)} />
+     
           </View>
           <Text
             style={{
@@ -245,7 +244,7 @@ export default function WeatherWidget() {
           }}
         >
           <View>
-            <RainLogo height={verticalScale(30)} width={verticalScale(30)} />
+            <RainLogo height={verticalScale(25)} width={verticalScale(25)} />
           </View>
           <Text
             style={{
