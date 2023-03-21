@@ -1,10 +1,59 @@
-import { View, Text } from "react-native";
-import { verticalScale } from "react-native-size-matters";
+import { View, Text, Switch, ScrollView } from "react-native";
+import { scale, verticalScale } from "react-native-size-matters";
 import SunLogo from "../assets/custom/sun.svg";
 import RainLogo from "../assets/custom/rain.svg";
 import WindLogo from "../assets/custom/wind.svg";
 import HumidityLogo from "../assets/custom/humidity.svg";
 import { Lexend_500Medium, useFonts } from "@expo-google-fonts/lexend";
+import { useState } from "react";
+import CloudSVG from "../assets/custom/weather_pattern/cloud.svg";
+import StormSVG from "../assets/custom/weather_pattern/storm.svg";
+import SunSVG from "../assets/custom/weather_pattern/sun.svg";
+
+function WeatherBox({time}:{time:number}){
+  let [fontsLoaded] = useFonts({
+    Lexend_500Medium,
+  });
+  // random number based on time props
+  const [random , setRandom] = useState(Math.floor(Math.random() * 3))
+  return <View
+  style={{
+    height: "100%",
+    width: scale(80),
+    marginLeft: scale(10),
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+<Text
+              style={{
+                color: "#1A6144",
+                fontSize: verticalScale(18),
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+             {time} AM
+            </Text>
+  {/* <Text style={{textAlign:'center' ,fontFamily:"Lexend_500Medium"}}>{time} AM</Text> */}
+<View>
+{random == 0 ? <CloudSVG height={verticalScale(25)} width={scale(25)} /> : null}
+{random == 1 ? <StormSVG height={verticalScale(25)} width={scale(25)} /> : null}
+{random == 2 ? <SunSVG height={verticalScale(25)} width={scale(25)} /> : null}
+            </View>
+
+        
+           
+            <Text
+              style={{
+                color: "#123A2A",
+                fontFamily: "Lexend_500Medium",
+                fontSize: verticalScale(18),
+              }}
+            >
+              23°
+            </Text>
+</View>
+}
 
 /**
  *
@@ -20,12 +69,15 @@ import { Lexend_500Medium, useFonts } from "@expo-google-fonts/lexend";
  *
  */
 export default function WeatherWidget() {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   let [fontsLoaded] = useFonts({
     Lexend_500Medium,
   });
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <View
       style={{
@@ -162,109 +214,140 @@ export default function WeatherWidget() {
         </Text> */}
         </View>
       </View>
-      <View
-        style={{
-          marginTop: verticalScale(15),
-          backgroundColor: "#E3FFED",
-          width: "100%",
-          height: verticalScale(80),
-          borderRadius: verticalScale(10),
-          borderWidth: verticalScale(2),
-          borderColor: "#1A6144",
-          flexDirection: "row",
+      <Switch
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        thumbColor={isEnabled ? "#1A6144" : "#70CBA6"}
+        trackColor={{
+          false: "#E3FFED",
+          true: "#E3FFED",
         }}
-      >
+      />
+      {!isEnabled ? (
         <View
           style={{
-            flex: 1,
-            borderRightWidth: verticalScale(2),
-            borderRightColor: "#1A6144",
-            justifyContent: "center",
-            alignItems: "center",
+            // marginTop: verticalScale(15),
+            backgroundColor: "#E3FFED",
+            width: "100%",
+            height: verticalScale(80),
+            borderRadius: verticalScale(10),
+            borderWidth: verticalScale(2),
+            borderColor: "#1A6144",
+            flexDirection: "row",
           }}
         >
-          <View>
-            <WindLogo height={verticalScale(25)} width={verticalScale(25)} />
+          <View
+            style={{
+              flex: 1,
+              borderRightWidth: verticalScale(2),
+              borderRightColor: "#1A6144",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View>
+              <WindLogo height={verticalScale(25)} width={verticalScale(25)} />
+            </View>
+            <Text
+              style={{
+                color: "#1A6144",
+                fontSize: verticalScale(18),
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              10m/s
+            </Text>
+            <Text
+              style={{
+                color: "#123A2A",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              wind
+            </Text>
           </View>
-          <Text
+          <View
             style={{
-              color: "#1A6144",
-              fontSize: verticalScale(18),
-              fontFamily: "Lexend_500Medium",
+              flex: 1,
+              borderRightWidth: verticalScale(2),
+              borderRightColor: "#1A6144",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            10m/s
-          </Text>
-          <Text
-            style={{
-              color: "#123A2A",
-              fontFamily: "Lexend_500Medium",
-            }}
-          >
-            wind
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            borderRightWidth: verticalScale(2),
-            borderRightColor: "#1A6144",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View>
-            <HumidityLogo
-              height={verticalScale(25)} width={verticalScale(25)} />
-     
+            <View>
+              <HumidityLogo
+                height={verticalScale(25)}
+                width={verticalScale(25)}
+              />
+            </View>
+            <Text
+              style={{
+                color: "#1A6144",
+                fontSize: verticalScale(18),
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              98%
+            </Text>
+            <Text
+              style={{
+                color: "#123A2A",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              humidity
+            </Text>
           </View>
-          <Text
+          <View
             style={{
-              color: "#1A6144",
-              fontSize: verticalScale(18),
-              fontFamily: "Lexend_500Medium",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            98%
-          </Text>
-          <Text
-            style={{
-              color: "#123A2A",
-              fontFamily: "Lexend_500Medium",
-            }}
-          >
-            humidity
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View>
-            <RainLogo height={verticalScale(25)} width={verticalScale(25)} />
+            <View>
+              <RainLogo height={verticalScale(25)} width={verticalScale(25)} />
+            </View>
+            <Text
+              style={{
+                color: "#1A6144",
+                fontSize: verticalScale(18),
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              10%
+            </Text>
+            <Text
+              style={{
+                color: "#123A2A",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              rain
+            </Text>
           </View>
-          <Text
-            style={{
-              color: "#1A6144",
-              fontSize: verticalScale(18),
-              fontFamily: "Lexend_500Medium",
-            }}
-          >
-            10%
-          </Text>
-          <Text
-            style={{
-              color: "#123A2A",
-              fontFamily: "Lexend_500Medium",
-            }}
-          >
-            rain
-          </Text>
         </View>
-      </View>
+      ) : (
+        <>
+          <ScrollView
+          // alwaysBounceHorizontal={false}
+          showsHorizontalScrollIndicator={false}
+            horizontal
+            style={{
+              backgroundColor: "#E3FFED",
+              width: "100%",
+              height: verticalScale(80),
+              borderRadius: verticalScale(10),
+              borderWidth: verticalScale(2),
+              borderColor: "#1A6144",
+              flexDirection: "row",
+            }}
+          >
+            {[12 , 1, 2, 3, 4, 5,6,7,8].map((item,index)=>< WeatherBox key={index} time={item} />)}
+          </ScrollView>
+        </>
+      )}
     </View>
   );
 }

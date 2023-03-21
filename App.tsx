@@ -1,43 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
-import { scale, verticalScale } from "react-native-size-matters";
-import { Lexend_500Medium, useFonts } from "@expo-google-fonts/lexend";
-import WeatherWidget from "./Components/WeatherWidget";
-import FlowerNavigator from "./Components/FlowerNavigator";
-import BottonMainNavigation from "./Components/ButtonMainNavigation";
-import { StatusBar } from "expo-status-bar";
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Main from './Pages/Main';
+import Login from './Pages/Login';
 
+export default function App (){
+    const Stack  = createNativeStackNavigator()
+return <NavigationContainer>
+        <Stack.Navigator initialRouteName='Login'>
+            <Stack.Screen name="Login" options={{
+                headerShown: false
+            }} component={Login} />
+            <Stack.Screen name='Main' options={{
+                headerTitle:"",
+                headerBackground: () => (
+                    <View style={{backgroundColor: '#C5F5D6', height: 100}} />
+                ),
+            }} component={Main} />
+        </Stack.Navigator>
 
-function App() {
-  let [fontsLoaded] = useFonts({
-    Lexend_500Medium,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
-  return (
-    <View style={styles.container}>
-
-    <BottonMainNavigation/>
-      <View
-        style={{
-          marginTop: verticalScale(60),
-        }}
-      >
-        <WeatherWidget />
-          <FlowerNavigator />
-      </View>
-    </View>
-  );
+</NavigationContainer>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#C5F5D6",
-    flex: 1,
-    position: "relative",
-  },
-});
-
-export default App;
